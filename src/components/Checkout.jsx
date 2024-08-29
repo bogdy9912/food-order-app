@@ -19,6 +19,14 @@ const Checkout = () => {
   const cartCtx = useContext(CartContext);
   const userProgressCtx = useContext(UserProgressContext);
 
+  const {
+    data,
+    isLoading: isSending,
+    error,
+    sendRequest,
+    clearData,
+  } = useHttp("http://localhost:3000/orders", reqConfig);
+
   const cartTotal = cartCtx.items.reduce((total, item) => {
     return (total += item.price * item.quantity);
   }, 0);
@@ -32,14 +40,8 @@ const Checkout = () => {
 
     // clear cart
     cartCtx.clearCart();
+    clearData();
   };
-
-  const {
-    data,
-    isLoading: isSending,
-    error,
-    sendRequest,
-  } = useHttp("http://localhost:3000/orders", reqConfig);
 
   const handleSubmit = (event) => {
     event.preventDefault();

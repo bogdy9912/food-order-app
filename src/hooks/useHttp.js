@@ -17,6 +17,10 @@ const useHttp = (url, config, initialData) => {
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
+  const clearData = () => {
+    setData[initialData];
+  }
+
   const sendRequest = useCallback(async (data) => {
     setIsLoading(true);
     try {
@@ -34,7 +38,7 @@ const useHttp = (url, config, initialData) => {
     }
   }, [sendRequest, config]);
 
-  return { data, isLoading, error, sendRequest };
+  return { data, isLoading, error, sendRequest,clearData };
 };
 
 export default useHttp;
