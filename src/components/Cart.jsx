@@ -41,7 +41,9 @@ const Cart = () => {
         <Button textOnly onClick={hideCart}>
           Close
         </Button>
-        <Button onClick={showCheckout}>Checkout</Button>
+        {cartCtx.items.length > 0 && (
+          <Button onClick={showCheckout}>Checkout</Button>
+        )}
       </p>
     </Modal>
   );
